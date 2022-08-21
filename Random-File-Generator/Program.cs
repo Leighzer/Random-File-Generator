@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -21,13 +20,13 @@ namespace Random_File_Generator
 
             string filePath = args[0];
 
-            long numberOfBytesToGenerate;            
-            if(!long.TryParse(args[1],out numberOfBytesToGenerate))
-            {   
+            long numberOfBytesToGenerate;
+            if (!long.TryParse(args[1], out numberOfBytesToGenerate))
+            {
                 Console.WriteLine($"Argument {args[1]} is not a file length.");
                 return;
             }
-            if(numberOfBytesToGenerate < 0)
+            if (numberOfBytesToGenerate < 0)
             {
                 Console.WriteLine($"Argument {numberOfBytesToGenerate} is not a file length.");
                 return;
@@ -40,16 +39,16 @@ namespace Random_File_Generator
                 return;
             }
             else
-            {   
+            {
                 long numBytesLeft = numberOfBytesToGenerate;
-                using(RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
-                using(FileStream fs = new FileStream(filePath, FileMode.Append))
+                using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+                using (FileStream fs = new FileStream(filePath, FileMode.Append))
                 {
                     bool isDone = false;
                     while (!isDone)
                     {
                         byte[] randomBytes;
-                        if(numBytesLeft >= MaxByteArraySize )
+                        if (numBytesLeft >= MaxByteArraySize)
                         {
                             randomBytes = new byte[MaxByteArraySize];
                         }
