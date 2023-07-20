@@ -41,7 +41,7 @@ namespace Random_File_Generator
             else
             {
                 long numBytesLeft = numberOfBytesToGenerate;
-                using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+                using (var rng = RandomNumberGenerator.Create())
                 using (FileStream fs = new FileStream(filePath, FileMode.Append))
                 {
                     bool isDone = false;
